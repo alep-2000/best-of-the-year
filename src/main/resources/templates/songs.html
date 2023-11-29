@@ -9,7 +9,9 @@
 	<ul>
 	    <!-- Itera sulla lista di film e visualizzali -->
 	    <li th:each="song : ${songs}">
-	        <span th:text="${song.titolo}"></span>
+	        <a th:href="${'/song/' + song.id}">
+	        	<span th:text="${song.titolo}"></span>
+	        </a>
 	    </li>
 	</ul>
 	<button>

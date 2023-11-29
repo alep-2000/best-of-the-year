@@ -67,21 +67,19 @@ private List<Movie> getBestMovies(){
         return "movies";
     }
 	
-	@GetMapping("/movies/{id}")
-	public String Movie(Model model, String movie, @PathVariable int id) {
+	@GetMapping("/movie/{id}")
+	public String Movie(Model model, @PathVariable int id) {
 		
-		for (Movie m : getBestMovies()) {
+		List<Movie> movies = getBestMovies();
+		for (Movie m : movies) {
 			if(m.getId() == id) {
-	                
-	                movie = m.getTitolo();
-	           
+				model.addAttribute("id", id);
+				model.addAttribute("movie", m);
+				
+				return "movie";    
 	        }
 		}
-    	
-		model.addAttribute("id", id);
-		model.addAttribute("movie", movie);
-		
-		return "movieShow";
+		return "Film non trovato";
 	}
     
 	 private List<Song> getBestSongs(){
@@ -128,20 +126,20 @@ private List<Movie> getBestMovies(){
         return "songs";
     }
     
-    @GetMapping("/songs/{id}")
-	public String Song(Model model, String song, @PathVariable int id) {
+    @GetMapping("/song/{id}")
+	public String Song(Model model, @PathVariable int id) {
 		
-		for (Movie m : getBestMovies()) {
-			if(m.getId() == id) {
+    	List<Song> songs = getBestSongs();
+		for (Song s : songs) {
+			if(s.getId() == id) {
 	                
-	                song = m.getTitolo();
-	           
+			model.addAttribute("id", id);
+			model.addAttribute("song", s);
+			
+			return "song";  
+           
 	        }
 		}
-    	
-		model.addAttribute("id", id);
-		model.addAttribute("movie", song);
-		
-		return "SongShow";
+		return "Canzone non trovato";
 	}
 }

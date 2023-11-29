@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Best of the year</title>
@@ -9,7 +9,9 @@
 	<ul>
 	    <!-- Itera sulla lista di film e visualizzali -->
 	    <li th:each="movie : ${movies}">
-	        <span th:text="${movie.titolo}"></span>
+			<a th:href="${'/movie/' + movie.id}">
+	        	<span th:text="${movie.titolo}"></span>
+	        </a>
 	    </li>
 	</ul>
 	<button>
