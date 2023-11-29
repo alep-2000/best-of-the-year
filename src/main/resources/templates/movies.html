@@ -1,24 +1,49 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Best of the year</title>
+	<meta charset="ISO-8859-1">
+	<title>Best of the year</title>
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}"/>
+	<script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js}"></script> 
 </head>
 <body>
-	<h1>Best of the year</h1>
-	<ul>
-	    <!-- Itera sulla lista di film e visualizzali -->
-	    <li th:each="movie : ${movies}">
-			<a th:href="${'/movie/' + movie.id}">
-	        	<span th:text="${movie.titolo}"></span>
-	        </a>
-	    </li>
-	</ul>
-	<button>
-		<a href="/">Homepage</a>
-	</button>
-	<button>
-		<a href="/songs">Songs</a>
-	</button>
+	<div class="container my-3">
+		<div class="row">
+			<div class="col-6 border border-black border-bottom-0 mx-auto">
+				<div class="row">
+					<div class="col-3">
+						<div class="border-end border-black p-3" style="height: 3.5rem;">Best of</div>
+					</div>
+					<div class="col-9 d-flex my-2 mx-auto">
+						<div class="me-2">
+							<div th:insert="frags :: button('/movies', 'Movies')"></div>							
+						</div>
+						<div class="me-2">
+							<div th:insert="frags :: button('/songs', 'Songs')"></div>							
+						</div>
+						<div>
+							<div th:insert="frags :: button('/', 'Home')"></div>							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row d-flex">
+			<div class="col-6 border border-black py-5 text-center mx-auto">
+				<h3>Best Movies</h3>
+				<table class="table mx-auto" style="width: 15rem;">
+				  <tbody th:each="movie : ${movies}">
+					  <tr>
+				      	<td class="border border-black">
+							<a class="text-decoration-none text-black" th:href="${'/movie/' + movie.id}">
+							  <span th:text="${movie.titolo}"></span>
+							</a>
+						</td>				  
+					  </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
