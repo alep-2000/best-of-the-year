@@ -5,7 +5,13 @@
 <title>Best of the year</title>
 </head>
 <body>
-	<h1>Best of the year by [[${movies}]]</h1>
+	<h1>Best of the year</h1>
+	<ul>
+	    <!-- Itera sulla lista di film e visualizzali -->
+	    <li th:each="movie : ${movies}">
+	        <span th:text="${movie.titolo}"></span>
+	    </li>
+	</ul>
 	<button>
 		<a href="/">Homepage</a>
 	</button>

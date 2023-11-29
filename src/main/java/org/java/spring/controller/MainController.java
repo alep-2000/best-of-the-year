@@ -47,22 +47,22 @@ private List<Movie> getBestMovies(){
    
 	
 	@GetMapping("/movies")
-    public String movies(Model model, String movies) {
+    public String movies(Model model) {
         
-        movies = "";
+		 List<Movie> movieList = getBestMovies();
         
-        for (Movie m : getBestMovies()) {
-            
-            if(m.getId() < getBestMovies().size()) {
-                
-                movies += m.getTitolo() + ", ";
-                
-            } else {
-                movies += m.getTitolo();
-            }
-        }
+//        for (Movie m : getBestMovies()) {
+//            
+//            if(m.getId() < getBestMovies().size()) {
+//                
+//                movieList += m.getTitolo() + ", ";
+//                
+//            } else {
+//                movieList += m.getTitolo();
+//            }
+//        }
         
-        model.addAttribute("movies", movies);
+        model.addAttribute("movies", movieList);
         
         return "movies";
     }
@@ -107,22 +107,23 @@ private List<Movie> getBestMovies(){
 	    }
 	
     @GetMapping("/songs")
-    public String songs(Model model, String songs) {
+    public String songs(Model model) {
         
-        songs = "";
+    	List<Song> songList = getBestSongs();
+//        songs = "";
+//        
+//        for (Song s : getBestSongs()) {
+//            
+//            if(s.getId() < getBestSongs().size()) {
+//                
+//                songs += s.getTitolo() + ", ";
+//                
+//            } else {
+//                songs += s.getTitolo();
+//            }
+//        }
         
-        for (Song s : getBestSongs()) {
-            
-            if(s.getId() < getBestSongs().size()) {
-                
-                songs += s.getTitolo() + ", ";
-                
-            } else {
-                songs += s.getTitolo();
-            }
-        }
-        
-        model.addAttribute("songs", songs);
+        model.addAttribute("songs", songList);
         
         return "songs";
     }
